@@ -23,7 +23,13 @@
                     <span>Review and invoice are available only when Total Offer Amount is at least 3,000.00.</span>
                 </div>
 
-                <section class="summary" aria-label="Summary totals">
+              
+
+                <div id="productAccordion" class="accordion" aria-label="Grouped product lists"></div>
+
+                <div id="minimumOrderMessage" class="review-empty hidden">Minimum order not met. Please add quantities
+                    to reach an offer total of 3,000.00.</div>
+  <section class="summary" aria-label="Summary totals">
                     <div class="summary-item">
                         <span class="label">Product Count</span>
                         <strong id="productCount">0</strong>
@@ -41,12 +47,6 @@
                         <strong id="grandOfferTotal">0.00</strong>
                     </div>
                 </section>
-
-                <div id="productAccordion" class="accordion" aria-label="Grouped product lists"></div>
-
-                <div id="minimumOrderMessage" class="review-empty hidden">Minimum order not met. Please add quantities
-                    to reach an offer total of 3,000.00.</div>
-
                 <div class="actions">
                     <button id="reviewButton" type="button" class="btn btn-primary">Review Selected Products</button>
                 </div>
