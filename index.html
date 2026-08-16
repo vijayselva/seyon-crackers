@@ -12,24 +12,18 @@
     <main class="page">
         <section class="card">
             <header class="header">
-                <h1>NovaMart Wholesale Pvt. Ltd.</h1>
-                <p>Contact: +91 98765 43210 | sales@novamart-demo.com | Chennai, India</p>
-                <p>Actual customer offer is 50%, and original amount is shown to customer as 90% OFF for display.</p>
+                <h1 style="text-align: center;">Seyon Crackers & Traders</h1>
+                <p>Discover a wide range of quality crackers for every celebration. At Seyon Crackers & Traders, we bring you exciting varieties, quality products, and attractive prices for a memorable celebration.</p>
+                <p>Contact: +91 70109 42234 | Sivakasi, India</p>
             </header>
 
             <section id="selectionScreen" class="screen" aria-label="Product selection screen">
-                <div class="minimum-order-banner" role="note" aria-live="polite">
-                    <strong>Minimum Order Alert</strong>
-                    <span>Review and invoice are available only when Total Offer Amount is at least 3,000.00.</span>
-                </div>
+                
 
-              
 
                 <div id="productAccordion" class="accordion" aria-label="Grouped product lists"></div>
-
-                <div id="minimumOrderMessage" class="review-empty hidden">Minimum order not met. Please add quantities
-                    to reach an offer total of 3,000.00.</div>
-  <section class="summary" aria-label="Summary totals">
+                
+                <section class="summary" aria-label="Summary totals">
                     <div class="summary-item">
                         <span class="label">Product Count</span>
                         <strong id="productCount">0</strong>
@@ -47,7 +41,15 @@
                         <strong id="grandOfferTotal">0.00</strong>
                     </div>
                 </section>
+
+                <div id="minimumOrderMessage" class="review-empty hidden">Minimum order not met. Please add quantities
+                    to reach an offer total of 3,000.00.</div>
+
                 <div class="actions">
+                    <!-- <div class="minimum-order-banner" role="note" aria-live="polite">
+                        <strong>Minimum Order Alert</strong>
+                        <span>Review and invoice are available only when Total Offer Amount is at least 3,000.00.</span>
+                    </div> -->
                     <button id="reviewButton" type="button" class="btn btn-primary">Review Selected Products</button>
                 </div>
             </section>
@@ -135,7 +137,7 @@
                                 <th>Product Name</th>
                                 <th>Price (Original / Offer)</th>
                                 <th>Quantity</th>
-                                <th>Total Amount</th>
+                                <th style="display: none;">Total Amount</th>
                                 <th>Total Offer Amount</th>
                             </tr>
                         </thead>
@@ -172,7 +174,11 @@
         </section>
     </main>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
     <script src="script.js"></script>
+
 </body>
 
 </html>
