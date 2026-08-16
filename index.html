@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Offer Calculator demo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="page">
+        <section class="card">
+            <header class="header">
+                <h1>NovaMart Wholesale Pvt. Ltd.</h1>
+                <p>Contact: +91 98765 43210 | sales@novamart-demo.com | Chennai, India</p>
+                <p>Actual customer offer is 50%, and original amount is shown to customer as 90% OFF for display.</p>
+            </header>
+
+            <section id="selectionScreen" class="screen" aria-label="Product selection screen">
+                <div class="minimum-order-banner" role="note" aria-live="polite">
+                    <strong>Minimum Order Alert</strong>
+                    <span>Review and invoice are available only when Total Offer Amount is at least 3,000.00.</span>
+                </div>
+
+                <section class="summary" aria-label="Summary totals">
+                    <div class="summary-item">
+                        <span class="label">Product Count</span>
+                        <strong id="productCount">0</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Total Discount Amount</span>
+                        <strong id="totalDiscount">0.00</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Grand Total Amount</span>
+                        <strong id="grandTotal">0.00</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Grand Total Offer Amount</span>
+                        <strong id="grandOfferTotal">0.00</strong>
+                    </div>
+                </section>
+
+                <div id="productAccordion" class="accordion" aria-label="Grouped product lists"></div>
+
+                <div id="minimumOrderMessage" class="review-empty hidden">Minimum order not met. Please add quantities
+                    to reach an offer total of 3,000.00.</div>
+
+                <div class="actions">
+                    <button id="reviewButton" type="button" class="btn btn-primary">Review Selected Products</button>
+                </div>
+            </section>
+
+            <section id="reviewScreen" class="screen hidden" aria-label="Selected product review screen">
+                <div class="review-header">
+                    <h2>Selected Product Review</h2>
+                    <p>Verify selected items, quantities, and amounts before finalizing.</p>
+                </div>
+
+                <div class="table-wrap">
+                    <table aria-label="Selected products for review">
+                        <thead>
+                            <tr>
+                                <th>SI.No</th>
+                                <th>Product Code</th>
+                                <th>Group</th>
+                                <th>Product Name</th>
+                                <th>Price (Original / Offer)</th>
+                                <th>Quantity</th>
+                                <th>Total Amount</th>
+                                <th>Total Offer Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reviewTableBody"></tbody>
+                    </table>
+                </div>
+
+                <div id="reviewEmptyState" class="review-empty hidden">No products selected. Go back and enter quantity
+                    for at least one item.</div>
+
+                <section class="customer-form" aria-label="Customer details">
+                    <h3>Customer Details</h3>
+                    <div class="customer-grid">
+                        <label>
+                            <span>Customer Name</span>
+                            <input id="customerName" type="text" placeholder="Enter full name">
+                        </label>
+                        <label>
+                            <span>Mobile Number</span>
+                            <input id="customerPhone" type="tel" placeholder="Enter mobile number">
+                        </label>
+                        <label class="customer-address-field">
+                            <span>Delivery Address</span>
+                            <textarea id="customerAddress" rows="3"
+                                placeholder="Enter complete delivery address"></textarea>
+                        </label>
+                    </div>
+                    <div id="customerFormMessage" class="review-empty hidden">Please fill customer name, mobile number,
+                        and delivery address to generate invoice.</div>
+                </section>
+
+                <div class="actions">
+                    <button id="backButton" type="button" class="btn">Back to Selection</button>
+                    <button id="invoiceButton" type="button" class="btn btn-primary">Generate Invoice</button>
+                </div>
+            </section>
+
+            <section id="invoiceScreen" class="screen hidden" aria-label="Final invoice screen">
+                <div class="review-header">
+                    <h2>Quotation / Invoice</h2>
+                    <p>Selected products and totals ready for print.</p>
+                </div>
+
+                <div class="invoice-meta">
+                    <span>Invoice No: <strong id="invoiceNumber">INV-0001</strong></span>
+                    <span>Date: <strong id="invoiceDate">-</strong></span>
+                    <span>Product Count: <strong id="invoiceProductCount">0</strong></span>
+                    <span>Total Qty: <strong id="invoiceTotalQuantity">0</strong></span>
+                </div>
+
+                <div class="invoice-customer" aria-label="Customer details on invoice">
+                    <p><strong>Customer Name:</strong> <span id="invoiceCustomerName">-</span></p>
+                    <p><strong>Mobile Number:</strong> <span id="invoiceCustomerPhone">-</span></p>
+                    <p><strong>Delivery Address:</strong> <span id="invoiceCustomerAddress">-</span></p>
+                </div>
+
+                <div class="table-wrap">
+                    <table aria-label="Final invoice selected products">
+                        <thead>
+                            <tr>
+                                <th>SI.No</th>
+                                <th>Product Code</th>
+                                <th>Group</th>
+                                <th>Product Name</th>
+                                <th>Price (Original / Offer)</th>
+                                <th>Quantity</th>
+                                <th>Total Amount</th>
+                                <th>Total Offer Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="invoiceTableBody"></tbody>
+                    </table>
+                </div>
+
+                <section class="summary invoice-summary" aria-label="Invoice totals">
+                    <div class="summary-item">
+                        <span class="label">Grand Total Amount</span>
+                        <strong id="invoiceGrandTotal">0.00</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Grand Total Offer Amount</span>
+                        <strong id="invoiceGrandOfferTotal">0.00</strong>
+                    </div>
+                </section>
+
+                <section class="invoice-terms" aria-label="Invoice terms and conditions">
+                    <h3>Terms &amp; Conditions:-</h3>
+                    <ol>
+                        <li>100% Advance</li>
+                        <li>Transportation Charges Extra</li>
+                        <li>After Payment Confirmation Your Delivery box Will be Handover to the transport office in
+                            next day</li>
+                    </ol>
+                </section>
+
+                <div class="actions">
+                    <button id="invoiceBackButton" type="button" class="btn">Back to Review</button>
+                    <button id="printButton" type="button" class="btn btn-primary">Print Invoice</button>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
