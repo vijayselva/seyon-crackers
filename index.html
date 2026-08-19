@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seyon Crackers & Traders</title>
+    <title>Product Offer Calculator demo</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -13,16 +13,47 @@
         <section class="card">
             <header class="header">
                 <h1 style="text-align: center;">Seyon Crackers & Traders</h1>
-                <p>Discover a wide range of quality crackers for every celebration. At Seyon Crackers & Traders, we bring you exciting varieties, quality products, and attractive prices for a memorable celebration.</p>
-                <p>Contact: +91 70109 42234 | Sivakasi, India</p>
+                <!-- <p>Discover a wide range of quality crackers for every celebration. At Seyon Crackers & Traders, we bring you exciting varieties, quality products, and attractive prices for a memorable celebration.</p>
+                <p>Contact: +91 70109 42234 | Sivakasi, India</p> -->
             </header>
 
             <section id="selectionScreen" class="screen" aria-label="Product selection screen">
-                
+                <section class="promo-banner" aria-label="Featured crackers">
+                    <div class="promo-copy">
+                        <span class="promo-kicker">Seyon Crackers & Traders</span>
+                        <h2>Catchy crackers packs for every celebration</h2>
+                        <p>Discover a wide range of quality crackers for every celebration. At Seyon Crackers & Traders, we bring you exciting varieties, quality products, and attractive prices for a memorable celebration..</p>
+                        <p>Contact: +91 70109 42234 | Sivakasi, India</p>
+                    </div>
+                    <div class="promo-gallery" aria-hidden="true">
+                        <figure class="promo-card promo-card-rose">
+                            <img src="assets/giftbox3.png" alt="Festival gift crackers box">
+                            <figcaption>Gift Box</figcaption>
+                        </figure>
+                        <figure class="promo-card promo-card-gold">
+                            <img src="assets/Sparklers2.webp" alt="Sparklers crackers pack">
+                            <figcaption>Sparklers</figcaption>
+                        </figure>
+                        <figure class="promo-card promo-card-mint">
+                            <img src="assets/combo-fireworks.jpg" alt="Premium crackers assortment box">
+                            <figcaption>Premium Mix</figcaption>
+                        </figure>
+                    </div>
+                </section>
 
+                <div class="minimum-order-banner" role="note" aria-live="polite">
+                    <strong>Minimum Order Alert</strong>
+                    <span>Review and invoice are available only when Total Offer Amount is at least 3,000.00.</span>
+                    <div id="orderTargetCard" class="order-target-card">
+                        <span class="order-target-label">Remaining To Unlock Review</span>
+                        <strong id="orderTargetAmount">3,000.00</strong>
+                    </div>
+                    <div class="order-progress" aria-hidden="true">
+                        <div id="orderProgressBar" class="order-progress-bar"></div>
+                    </div>
+                    <span id="orderProgressText" class="order-progress-text">0.00 of 3,000.00 reached</span>
+                </div>
 
-                <div id="productAccordion" class="accordion" aria-label="Grouped product lists"></div>
-                
                 <section class="summary" aria-label="Summary totals">
                     <div class="summary-item">
                         <span class="label">Product Count</span>
@@ -42,14 +73,27 @@
                     </div>
                 </section>
 
+                <section class="catalog-toolbar" aria-label="Product search and filters">
+                    <label class="catalog-search-field">
+                        <span>Search Products</span>
+                        <input id="productSearch" type="search" placeholder="Search by name or code">
+                    </label>
+                    <label class="catalog-filter-field">
+                        <span>Filter Group</span>
+                        <select id="groupFilter">
+                            <option value="all">All Groups</option>
+                        </select>
+                    </label>
+                </section>
+
+                <div id="productAccordion" class="accordion" aria-label="Grouped product lists"></div>
+                <div id="catalogEmptyState" class="review-empty hidden">No matching products found. Try a different search or filter.</div>
+
                 <div id="minimumOrderMessage" class="review-empty hidden">Minimum order not met. Please add quantities
                     to reach an offer total of 3,000.00.</div>
 
                 <div class="actions">
-                    <!-- <div class="minimum-order-banner" role="note" aria-live="polite">
-                        <strong>Minimum Order Alert</strong>
-                        <span>Review and invoice are available only when Total Offer Amount is at least 3,000.00.</span>
-                    </div> -->
+                    <button type="button" class="btn btn-secondary reset-session-button web-reset-button">Clear</button>
                     <button id="reviewButton" type="button" class="btn btn-primary">Review Selected Products</button>
                 </div>
             </section>
@@ -59,6 +103,25 @@
                     <h2>Selected Product Review</h2>
                     <p>Verify selected items, quantities, and amounts before finalizing.</p>
                 </div>
+
+                <section class="summary review-summary" aria-label="Review totals">
+                    <div class="summary-item">
+                        <span class="label">Product Count</span>
+                        <strong id="reviewProductCount">0</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Total Quantity</span>
+                        <strong id="reviewTotalQuantity">0</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Grand Total Amount</span>
+                        <strong id="reviewGrandTotal">0.00</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Grand Total Offer Amount</span>
+                        <strong id="reviewGrandOfferTotal">0.00</strong>
+                    </div>
+                </section>
 
                 <div class="table-wrap">
                     <table aria-label="Selected products for review">
@@ -70,7 +133,6 @@
                                 <th>Product Name</th>
                                 <th>Price (Original / Offer)</th>
                                 <th>Quantity</th>
-                                <th>Total Amount</th>
                                 <th>Total Offer Amount</th>
                             </tr>
                         </thead>
@@ -87,22 +149,24 @@
                         <label>
                             <span>Customer Name</span>
                             <input id="customerName" type="text" placeholder="Enter full name">
+                            <span id="customerNameError" class="field-error hidden">Please enter at least 2 characters.</span>
                         </label>
                         <label>
                             <span>Mobile Number</span>
                             <input id="customerPhone" type="tel" placeholder="Enter mobile number">
+                            <span id="customerPhoneError" class="field-error hidden">Please enter a valid 10-digit mobile number.</span>
                         </label>
                         <label class="customer-address-field">
                             <span>Delivery Address</span>
                             <textarea id="customerAddress" rows="3"
                                 placeholder="Enter complete delivery address"></textarea>
+                            <span id="customerAddressError" class="field-error hidden">Please enter at least 6 characters for the address.</span>
                         </label>
                     </div>
-                    <div id="customerFormMessage" class="review-empty hidden">Please fill customer name, mobile number,
-                        and delivery address to generate invoice.</div>
                 </section>
 
                 <div class="actions">
+                    <button type="button" class="btn btn-secondary reset-session-button web-reset-button">Clear</button>
                     <button id="backButton" type="button" class="btn">Back to Selection</button>
                     <button id="invoiceButton" type="button" class="btn btn-primary">Generate Invoice</button>
                 </div>
@@ -111,7 +175,6 @@
             <section id="invoiceScreen" class="screen hidden" aria-label="Final invoice screen">
                 <div class="review-header">
                     <h2>Quotation / Invoice</h2>
-                    <p>Selected products and totals ready for print.</p>
                 </div>
 
                 <div class="invoice-meta">
@@ -137,7 +200,6 @@
                                 <th>Product Name</th>
                                 <th>Price (Original / Offer)</th>
                                 <th>Quantity</th>
-                                <th style="display: none;">Total Amount</th>
                                 <th>Total Offer Amount</th>
                             </tr>
                         </thead>
@@ -159,26 +221,71 @@
                 <section class="invoice-terms" aria-label="Invoice terms and conditions">
                     <h3>Terms &amp; Conditions:-</h3>
                     <ol>
-                        <li>100% Advance</li>
-                        <li>Transportation Charges Extra</li>
-                        <li>After Payment Confirmation Your Delivery box Will be Handover to the transport office in
-                            next day</li>
+                        <li><strong>100% Advance Payment:</strong> Full payment must be made in advance to confirm your order.</li>
+                      
+                        <li><strong>Invoice Confirmation:</strong> After review, please download your invoice and share it with us on <strong>7010942234</strong> for order verification and processing.</li>
+
+                        <li><strong>Order Confirmation:</strong> Your order will be considered confirmed only after successful payment verification.</li>
+
+                        <li><strong>Order Dispatch:</strong> Once payment is confirmed, your order will be packed and handed over to the transport office on the next working day.</li>
+
+                        <li><strong>Transportation Charges:</strong> Transportation/courier charges are extra and will be borne by the customer.</li>
                     </ol>
+                      <br/>
+                      <h3>விதிமுறைகள் & நிபந்தனைகள்:-</h3>
+                    <ol>
+                        <li><strong>100% முன்பணம்:</strong> உங்கள் ஆர்டரை உறுதிப்படுத்த முழுத் தொகையையும் முன்கூட்டியே செலுத்த வேண்டும்.</li>
+
+<li><strong>இன்வாய்ஸ் உறுதிப்படுத்தல்:</strong> சரிபார்த்த பிறகு, உங்கள் இன்வாய்ஸை பதிவிறக்கம் செய்து, ஆர்டர் சரிபார்ப்பு மற்றும் செயலாக்கத்திற்காக <strong>7010942234</strong> என்ற எண்ணிற்கு WhatsApp மூலம் அனுப்பவும்.</li>
+
+<li><strong>ஆர்டர் உறுதிப்படுத்தல்:</strong> பணம் வெற்றிகரமாக சரிபார்க்கப்பட்ட பிறகே உங்கள் ஆர்டர் உறுதிசெய்யப்பட்டதாகக் கருதப்படும்.</li>
+
+<li><strong>ஆர்டர் அனுப்புதல்:</strong> பணம் உறுதிசெய்யப்பட்ட பிறகு, உங்கள் ஆர்டர் பேக் செய்யப்பட்டு அடுத்த வேலை நாளில் போக்குவரத்து அலுவலகத்தில் ஒப்படைக்கப்படும்.</li>
+
+<li><strong>போக்குவரத்து கட்டணம்:</strong> போக்குவரத்து / கூரியர் கட்டணம் கூடுதலாக வசூலிக்கப்படும். இந்தக் கட்டணத்தை வாடிக்கையாளரே ஏற்க வேண்டும்.</li>
+                      </ol>
                 </section>
 
                 <div class="actions">
                     <button id="invoiceBackButton" type="button" class="btn">Back to Review</button>
-                    <button id="printButton" type="button" class="btn btn-primary">Print Invoice</button>
+                    <button id="printButton" type="button" class="btn btn-primary">Download Invoice</button>
+                    <!-- <a id="printButton" href="https://wa.me/917010942234?text=Hello%2C%20I%20am%20sharing%20my%20order%20invoice." 
+                    target="_blank">
+                     Send Invoice on WhatsApp
+                 </a> -->
                 </div>
             </section>
+
+            <aside id="mobileMiniCart" class="mobile-mini-cart" aria-label="Mobile cart summary">
+                <div class="mini-cart-copy">
+                    <strong id="miniCartItemCount">0 items</strong>
+                    <span id="miniCartQuantity">Qty 0</span>
+                </div>
+                <div class="mini-cart-stats" aria-hidden="true">
+                    <div class="mini-cart-stat">
+                        <span class="mini-cart-stat-label">Discount</span>
+                        <strong id="miniCartDiscount">0.00</strong>
+                    </div>
+                    <div class="mini-cart-stat">
+                        <span class="mini-cart-stat-label">Grand Total</span>
+                        <strong id="miniCartGrandTotal">0.00</strong>
+                    </div>
+                    <div class="mini-cart-stat mini-cart-stat-accent">
+                        <span class="mini-cart-stat-label">Offer Total</span>
+                        <strong id="miniCartOfferTotal">0.00</strong>
+                    </div>
+                </div>
+                <div class="mini-cart-actions">
+                    <button id="miniCartResetButton" type="button" class="btn btn-secondary">Clear</button>
+                    <button id="miniCartReviewButton" type="button" class="btn btn-primary">Review</button>
+                </div>
+            </aside>
         </section>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <div id="downloadToast" class="toast hidden" role="status" aria-live="polite">Invoice downloaded</div>
 
     <script src="script.js"></script>
-
 </body>
 
 </html>
