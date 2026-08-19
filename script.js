@@ -1272,6 +1272,7 @@ function downloadInvoice() {
     link.click();
     link.remove();
 
+    showDownloadToast("Invoice downloaded. Please attach the PDF in WhatsApp.");
     setTimeout(() => {
         URL.revokeObjectURL(downloadUrl);
 
@@ -1286,7 +1287,6 @@ function downloadInvoice() {
         );
     }, 500);
 
-    showDownloadToast("Invoice downloaded");
 }
 
 
