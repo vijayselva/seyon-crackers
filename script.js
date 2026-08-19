@@ -1292,7 +1292,7 @@ function downloadInvoice() {
 
 
 
-function showDownloadToast(message = "Invoice downloaded") {
+function showDownloadToast(message = "Invoice downloaded. Please attach the PDF in WhatsApp") {
     if (downloadToastTimer) {
         clearTimeout(downloadToastTimer);
     }
